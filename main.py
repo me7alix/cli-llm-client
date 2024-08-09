@@ -1,5 +1,6 @@
 from openai import OpenAI
-import json                                          import sys
+import json
+import sys
 import os
 
 cfg_path = os.path.join(os.path.dirname(__file__), 'config.json')
@@ -9,11 +10,15 @@ client = OpenAI(
   base_url = cfg["base-url"],
   api_key = cfg["api-key"]
 )
-                                                     sys_prompt = cfg["main-prompt"]
-if len(sys.argv) > 1:                                   sys_prompt = cfg[sys.argv[1]+"-prompt"]
-                                                     msgs = []
 
-def get_msg(content):                                  return client.chat.completions.create(
+sys_prompt = cfg["main-prompt"]
+if len(sys.argv) > 1:
+   sys_prompt = cfg[sys.argv[1]+"-prompt"]
+
+msgs = []
+
+def get_msg(content):
+  return client.chat.completions.create(
     model=cfg["model"],
     messages=[{"role":"system","content":sys_prompt}]+content,
     temperature=0.2,
