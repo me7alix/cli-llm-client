@@ -13,7 +13,7 @@ client = OpenAI(
 
 sys_prompt = cfg["main-prompt"]
 if len(sys.argv) > 1:
-   sys_prompt = cfg[sys.argv[1]+"-prompt"]
+  sys_prompt = cfg[sys.argv[1]+"-prompt"]
 
 msgs = []
 
@@ -28,9 +28,13 @@ def get_msg(content):
   )
 
 if len(sys.argv) > 2:
-  msg = {"role":"user","content":sys.argv[2]}
+  text = ""
+  for ar in sys.argv[2:]:
+      text += ar + ' '
+
+  msg = {"role":"user","content":text}
   completion = get_msg([msg])
-  print("answer: ", end="")
+  print("AI: ", end="")
   for chunk in completion:
     ch = chunk.choices[0].delta.content
     if ch is not None:
@@ -53,7 +57,7 @@ while True:
   msg = {"role":"user","content":tx}
   msgs.append(msg)
   completion = get_msg(msgs)
-  print("answer: ", end="")
+  print("AI: ", end="")
   assis_tx = ""
 
   for chunk in completion:
