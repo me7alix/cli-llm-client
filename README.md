@@ -21,8 +21,23 @@ ast
 ast tr
 # running without starting a chat
 ast n "the longest river in the world"
+# you can also do it like this
+ast n the longest river in the world
 ```
 
 ## Commands
 Use `!clear` to clear the chat and context. Use `!exit` to exit the chat.
 
+## Adding system prompts
+To add a new system prompt, open the project directory
+```
+cd ~/cli-llm-client
+```
+Then open `config.json` file in some text editor (I use nano for example)
+```
+nano config.json
+```
+Add a new system prompt in a similar way
+```
+"[prompt name]-prompt":"[your prompt]"
+```
