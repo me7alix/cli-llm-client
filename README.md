@@ -33,7 +33,7 @@ To add a new system prompt, open the project directory
 ```
 cd ~/cli-llm-client
 ```
-Then open `config.json` file in some text editor (I use nano for example)
+Then open `config.json` file in some text editor (I'm using nano as an example)
 ```
 nano config.json
 ```
