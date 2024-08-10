@@ -39,5 +39,5 @@ nano config.json
 ```
 Add a new system prompt in a similar way
 ```
-"[prompt name]-prompt":"[your prompt]"
+"prompt_name-prompt":"your prompt"
 ```
