@@ -3,11 +3,15 @@ A CLI LLM client based on the openai library written in python
 
 
 ## Installation
+Installing the required library
+```
+pip install openai
+```
 Download repository
 ```
 git clone https://github.com/me7alix/cli-llm-client
 ```
-Then add this line to startup file (~/.bashrc, ~/.zshrc, etc) to have access to the program everywhere
+Add this line to startup file (~/.bashrc, ~/.zshrc, etc) to have access to the program everywhere
 ```
 alias ast="python ~/cli-llm-client/main.py"
 ```
