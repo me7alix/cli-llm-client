@@ -3,6 +3,8 @@ import json
 import sys
 import os
 
+MAX_MSGS_NUM = 12
+
 cfg_path = os.path.join(os.path.dirname(__file__), 'config.json')
 cfg = json.loads(open(cfg_path, 'r').read())
 
@@ -68,5 +70,5 @@ while True:
   assis_msg = {"role":"assistant","content":assis_tx}
 
   msgs.append(assis_msg)
-  if len(msgs) > 12: msgs = msgs[-12:]
+  msgs = msgs[-MAX_MSGS_NUM:]
   print("\n")
