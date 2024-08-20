@@ -36,18 +36,19 @@ if len(sys.argv) > 2:
 
   msg = {"role":"user","content":text}
   completion = get_msg([msg])
-  print("AI: ", end="")
+  print("", end="", flush=True)
   for chunk in completion:
     ch = chunk.choices[0].delta.content
     if ch is not None:
-      print(ch, end="")
+      print(ch, end="", flush=True)
   print('\n')
   exit()
 
 os.system("clear")
 
 while True:
-  tx = input(">>> ")
+  tx = input("\x1b[32m>>> ")
+  print("\x1b[0m", end="")
   if tx == "!clear":
     os.system("clear")
     msgs = []
@@ -59,14 +60,14 @@ while True:
   msg = {"role":"user","content":tx}
   msgs.append(msg)
   completion = get_msg(msgs)
-  print("AI: ", end="")
+  print("", end="", flush=True)
   assis_tx = ""
 
   for chunk in completion:
     ch = chunk.choices[0].delta.content
     if ch is not None:
       assis_tx += ch
-      print(ch, end="")
+      print(ch, end="", flush=True)
   assis_msg = {"role":"assistant","content":assis_tx}
 
   msgs.append(assis_msg)
