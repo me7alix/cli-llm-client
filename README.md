@@ -29,8 +29,14 @@ ast n "the longest river in the world"
 ast n the longest river in the world
 ```
 
+You can pass text files to the prompt using this statement `file{path to file}`
+```
+ast n write this code and discribe what it does file{main.py}
+ast n explain me the story file{stories/story.txt}
+```
+
 ## Commands
-Use `!clear` to clear the chat and context. Use `!exit` to exit the chat.
+Use `/clear` to clear the chat and context. Use `/exit` to exit the chat.
 
 ## Adding system prompts
 To add a new system prompt, open the project directory
