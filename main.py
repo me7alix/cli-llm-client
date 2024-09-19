@@ -19,6 +19,17 @@ if len(sys.argv) > 1:
 
 msgs = []
 
+def get_files(prompt):
+  try:
+    for i in range(len(prompt)):
+      if prompt[i:i+5] == "file{":
+        for j in range(i+5, len(prompt)):
+          if prompt[j] == "}":
+            return get_files(prompt[:i]+'\n'+open(prompt[i+5:j], 'r').read()+'\n'+prompt[j+1:])
+    return prompt
+  except:
+    return "just write: No such file or directory"
+
 def get_msg(content):
   return client.chat.completions.create(
     model=cfg["model"],
@@ -33,7 +44,7 @@ if len(sys.argv) > 2:
   text = ""
   for ar in sys.argv[2:]:
       text += ar + ' '
-
+  text = get_files(text)
   msg = {"role":"user","content":text}
   completion = get_msg([msg])
   print("", end="", flush=True)
@@ -49,12 +60,12 @@ os.system("clear")
 while True:
   tx = input("\x1b[32m>>> ")
   print("\x1b[0m", end="")
-  if tx == "!clear":
+  if tx == "/clear":
     os.system("clear")
     msgs = []
     continue
-
-  if tx == "!exit":
+  tx = get_files(tx)
+  if tx == "/exit":
     exit()
 
   msg = {"role":"user","content":tx}
